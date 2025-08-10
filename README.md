@@ -1,4 +1,4 @@
-# Explain Like I’m 15 – AI-Powered Legal & Government Document Simplifier
+# LawDecodes – AI-Powered Legal & Government Document Simplifier
 
 ## 📌 Project Title
 **LawDecodes** – An AI-powered web platform that simplifies legal and government documents into easy-to-understand language for the common citizen.
