@@ -12,6 +12,176 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./signup.css">
+    
+    <style>
+        /* Security Code Styles */
+        .security-code-container {
+            margin: 15px 0;
+        }
+
+        .captcha-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .captcha-display {
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: #333;
+            text-decoration: line-through;
+            text-decoration-color: rgba(0, 0, 0, 0.3);
+            user-select: none;
+            min-width: 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .captcha-display::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.1) 2px,
+                rgba(0, 0, 0, 0.1) 4px
+            );
+            animation: noise 3s linear infinite;
+        }
+
+        @keyframes noise {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .refresh-btn {
+            background: #666;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: #333;
+            transform: rotate(180deg);
+        }
+
+        .security-input-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .security-input-box input {
+            width: 100%;
+            height: 50px;
+            background: transparent;
+            border: none;
+            outline: none;
+            border: 2px solid rgba(255, 255, 255, .2);
+            border-radius: 40px;
+            font-size: 16px;
+            color: #fff;
+            padding: 20px 45px 20px 20px;
+            letter-spacing: 1px;
+        }
+
+        .security-input-box input::placeholder {
+            color: rgba(255, 255, 255, .5);
+        }
+
+        .security-input-box label {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 16px;
+            pointer-events: none;
+            transition: .5s;
+        }
+
+        .security-input-box input:focus~label,
+        .security-input-box input:valid~label {
+            top: -5px;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .security-input-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .success-message {
+            color: #4ecdc4;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .captcha-instructions {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* Loading animation for button */
+        .btn.loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid #fff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 
 <body>
@@ -20,27 +190,46 @@
         <div class="form-box register">
             <h2 class="title">Sign Up</h2>
 
-            <form action="./MainHomePage.html" method="GET">
+            <form id="signupForm" action="./MainHomePage.html" method="GET">
 
                 <div class="input-box">
-                    <input type="text" required>
+                    <input type="text" required name="username" id="username">
                     <label for="">Username</label>
                     <i class='bx bxs-user'></i>
                 </div>
 
                 <div class="input-box">
-                    <input type="email" required>
+                    <input type="email" required name="email" id="email">
                     <label for="">Email</label>
                     <i class='bx bxs-envelope'></i>
                 </div>
 
                 <div class="input-box">
-                    <input type="password" required>
+                    <input type="password" required name="password" id="password">
                     <label for="">Password</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
 
-                <button type="submit" class="btn">Sign Up</button>
+                <!-- Security Code Section -->
+                <div class="security-code-container">
+                    <div class="captcha-box">
+                        <div class="captcha-display" id="captchaDisplay"></div>
+                        <button type="button" class="refresh-btn" id="refreshCaptcha" title="Generate new code">
+                            <i class='bx bx-refresh'></i>
+                        </button>
+                    </div>
+                    
+                    <div class="security-input-box">
+                        <input type="text" required name="securityCode" id="securityCode" maxlength="6" autocomplete="off">
+                        <label for="">Enter Security Code</label>
+                        <i class='bx bx-shield-check'></i>
+                        <div class="error-message" id="captchaError">Security code doesn't match. Please try again.</div>
+                        <div class="success-message" id="captchaSuccess">Security code verified!</div>
+                    </div>
+                    <div class="captcha-instructions">Enter the code shown above (case-insensitive)</div>
+                </div>
+
+                <button type="submit" class="btn" id="submitBtn">Sign Up</button>
 
                 <div class="linkTxt">
                     <p>Already have an account? <a href="./Loginpage.html" class="login-link">Login</a></p>
@@ -49,10 +238,174 @@
         </div>
 
         <div class="info-text register">
-            <h2>Welcome Back!</h2>
-            <p>Sign up quickly to get summary of your documents!!!</p>
+            <h2>Join Us Today!</h2>
+            <p>Sign up quickly to get summary of your documents! Complete the security verification to protect your account.</p>
         </div>
     </div>
+
+    <script>
+        class SecurityCodeManager {
+            constructor() {
+                this.currentCode = '';
+                this.captchaDisplay = document.getElementById('captchaDisplay');
+                this.securityInput = document.getElementById('securityCode');
+                this.refreshBtn = document.getElementById('refreshCaptcha');
+                this.errorMsg = document.getElementById('captchaError');
+                this.successMsg = document.getElementById('captchaSuccess');
+                this.form = document.getElementById('signupForm');
+                this.submitBtn = document.getElementById('submitBtn');
+                
+                this.init();
+            }
+
+            init() {
+                this.generateCode();
+                this.attachEventListeners();
+            }
+
+            generateCode() {
+                // Generate a 6-character alphanumeric code
+                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghkmnpqrstuvwxyz23456789';
+                let code = '';
+                
+                for (let i = 0; i < 6; i++) {
+                    code += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                
+                this.currentCode = code;
+                this.displayCode();
+                this.clearMessages();
+                this.securityInput.value = '';
+            }
+
+            displayCode() {
+                // Add some visual styling to make it look more like a captcha
+                const styledCode = this.currentCode.split('').map(char => {
+                    const rotation = Math.random() * 20 - 10; // Random rotation between -10 and 10 degrees
+                    const color = `hsl(${Math.random() * 360}, 70%, 30%)`; // Random dark colors
+                    return `<span style="display: inline-block; transform: rotate(${rotation}deg); color: ${color}; margin: 0 2px;">${char}</span>`;
+                }).join('');
+                
+                this.captchaDisplay.innerHTML = styledCode;
+            }
+
+            validateCode(inputCode) {
+                return inputCode.toLowerCase() === this.currentCode.toLowerCase();
+            }
+
+            showError() {
+                this.errorMsg.style.display = 'block';
+                this.successMsg.style.display = 'none';
+                this.securityInput.style.borderColor = '#ff6b6b';
+            }
+
+            showSuccess() {
+                this.successMsg.style.display = 'block';
+                this.errorMsg.style.display = 'none';
+                this.securityInput.style.borderColor = '#4ecdc4';
+            }
+
+            clearMessages() {
+                this.errorMsg.style.display = 'none';
+                this.successMsg.style.display = 'none';
+                this.securityInput.style.borderColor = 'rgba(255, 255, 255, .2)';
+            }
+
+            attachEventListeners() {
+                // Refresh button
+                this.refreshBtn.addEventListener('click', () => {
+                    this.generateCode();
+                });
+
+                // Real-time validation
+                this.securityInput.addEventListener('input', () => {
+                    const inputValue = this.securityInput.value;
+                    
+                    if (inputValue.length === 6) {
+                        if (this.validateCode(inputValue)) {
+                            this.showSuccess();
+                        } else {
+                            this.showError();
+                        }
+                    } else {
+                        this.clearMessages();
+                    }
+                });
+
+                // Form submission
+                this.form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const inputCode = this.securityInput.value;
+                    
+                    // Validate all fields
+                    if (!this.validateForm()) {
+                        return;
+                    }
+                    
+                    // Validate security code
+                    if (!this.validateCode(inputCode)) {
+                        this.showError();
+                        this.generateCode(); // Generate new code after failed attempt
+                        return;
+                    }
+                    
+                    // Show loading state
+                    this.submitBtn.classList.add('loading');
+                    this.submitBtn.disabled = true;
+                    
+                    // Simulate processing time
+                    setTimeout(() => {
+                        // In a real application, you would send data to server here
+                        console.log('Form submitted successfully with security verification');
+                        
+                        // Redirect to main page (simulate successful registration)
+                        window.location.href = './MainHomePage.html';
+                    }, 2000);
+                });
+            }
+
+            validateForm() {
+                const username = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                if (!username || !email || !password) {
+                    alert('Please fill in all required fields.');
+                    return false;
+                }
+                
+                // Basic email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return false;
+                }
+                
+                // Password strength validation
+                if (password.length < 6) {
+                    alert('Password must be at least 6 characters long.');
+                    return false;
+                }
+                
+                return true;
+            }
+        }
+
+        // Initialize the security code manager when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new SecurityCodeManager();
+        });
+
+        // Add some keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl + R to refresh captcha
+            if (e.ctrlKey && e.key === 'r') {
+                e.preventDefault();
+                document.getElementById('refreshCaptcha').click();
+            }
+        });
+    </script>
 </body>
 
 </html>
