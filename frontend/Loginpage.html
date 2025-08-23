@@ -6,35 +6,227 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
     <link rel="stylesheet" href="./Loogin.css">
+    <style>
+        /* Additional styles for forgot password functionality */
+        .forgot-password-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password-link:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        .forgot-password-form {
+            display: none;
+        }
+
+        .forgot-password-form.active {
+            display: block;
+        }
+
+        .login.hidden {
+            display: none;
+        }
+
+        .back-to-login {
+            background: none;
+            border: none;
+            color: #666;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-login:hover {
+            color: #007bff;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #c3e6cb;
+            font-size: 14px;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #f5c6cb;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
     <h1 class="site-title">DoctorDoc</h1>
     <div class="wrapper">
-        <div class="form-box login">
+        <!-- Login Form -->
+        <div class="form-box login" id="loginForm">
             <h2>Login</h2>
             <form action="./MainHomePage.html" method="GET">
                 <div class="input-box">
-                    <input type="text" required="required">
+                    <input type="text" required="required" name="username" id="username">
                     <label>Username</label>
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" required="required">
+                    <input type="password" required="required" name="password" id="password">
                     <label>Password</label>
                     <i class="fas fa-lock"></i>
                 </div>
                 <button type="submit">Login</button>
                 <div class="linkTxt">
+                    <a href="#" class="forgot-password-link" id="forgotPasswordLink">Forgot Password?</a>
                     <p>Don't have an account? <a href="./Signup.html">Sign up</a></p>
                 </div>
             </form>
         </div>
-        <div class="info-text login">
-            <h2>Welcome Back!</h2>
-            <p>Please enter your credentials to access your account.</p>
+
+        <!-- Forgot Password Form -->
+        <div class="form-box forgot-password-form" id="forgotPasswordForm">
+            <h2>Reset Password</h2>
+            <div id="messageContainer"></div>
+            <form id="forgotPasswordFormElement">
+                <div class="input-box">
+                    <input type="email" required="required" name="email" id="resetEmail">
+                    <label>Email Address</label>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <button type="submit">Send Reset Link</button>
+                <button type="button" class="back-to-login" id="backToLogin">Back to Login</button>
+            </form>
+        </div>
+
+        <!-- Info Text -->
+        <div class="info-text login" id="infoText">
+            <h2 id="infoTitle">Welcome Back!</h2>
+            <p id="infoDescription">Please enter your credentials to access your account.</p>
         </div>
     </div>
+
+    <script>
+        // Forgot Password Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+            const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+            const backToLogin = document.getElementById('backToLogin');
+            const infoTitle = document.getElementById('infoTitle');
+            const infoDescription = document.getElementById('infoDescription');
+            const forgotPasswordFormElement = document.getElementById('forgotPasswordFormElement');
+            const messageContainer = document.getElementById('messageContainer');
+
+            // Switch to forgot password form
+            forgotPasswordLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginForm.classList.add('hidden');
+                forgotPasswordForm.classList.add('active');
+                
+                // Update info text
+                infoTitle.textContent = 'Reset Your Password';
+                infoDescription.textContent = 'Enter your email address and we\'ll send you a link to reset your password.';
+                
+                // Clear any previous messages
+                messageContainer.innerHTML = '';
+            });
+
+            // Switch back to login form
+            backToLogin.addEventListener('click', function() {
+                forgotPasswordForm.classList.remove('active');
+                loginForm.classList.remove('hidden');
+                
+                // Restore original info text
+                infoTitle.textContent = 'Welcome Back!';
+                infoDescription.textContent = 'Please enter your credentials to access your account.';
+                
+                // Clear form and messages
+                forgotPasswordFormElement.reset();
+                messageContainer.innerHTML = '';
+            });
+
+            // Handle forgot password form submission
+            forgotPasswordFormElement.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('resetEmail').value;
+                
+                // Clear previous messages
+                messageContainer.innerHTML = '';
+                
+                // Basic email validation
+                if (!isValidEmail(email)) {
+                    showMessage('Please enter a valid email address.', 'error');
+                    return;
+                }
+                
+                // Simulate sending reset email (replace with actual API call)
+                simulatePasswordReset(email);
+            });
+
+            // Email validation function
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            // Simulate password reset (replace with actual implementation)
+            function simulatePasswordReset(email) {
+                // Show loading state
+                const submitButton = forgotPasswordFormElement.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                submitButton.textContent = 'Sending...';
+                submitButton.disabled = true;
+
+                // Simulate API call delay
+                setTimeout(() => {
+                    // Reset button state
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                    
+                    // Show success message
+                    showMessage(`Password reset link has been sent to ${email}. Please check your inbox and follow the instructions to reset your password.`, 'success');
+                    
+                    // Clear the form
+                    forgotPasswordFormElement.reset();
+                }, 2000);
+            }
+
+            // Show message function
+            function showMessage(message, type) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = type === 'success' ? 'success-message' : 'error-message';
+                messageDiv.textContent = message;
+                messageContainer.appendChild(messageDiv);
+                
+                // Auto-hide success messages after 5 seconds
+                if (type === 'success') {
+                    setTimeout(() => {
+                        if (messageDiv.parentNode) {
+                            messageDiv.remove();
+                        }
+                    }, 5000);
+                }
+            }
+        });
+
+        // If you have existing Login.js functionality, make sure to integrate it here
+        // or load it after this script
+    </script>
+    
+    <!-- Load your existing Login.js if it has other functionality -->
     <script src="./Login.js"></script>
 </body>
 
