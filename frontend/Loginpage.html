@@ -2,232 +2,272 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <link rel="stylesheet" href="./Loogin.css">
-    <style>
-        /* Additional styles for forgot password functionality */
-        .forgot-password-link {
-            display: inline-block;
-            margin-top: 10px;
-            color: #666;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <link rel="stylesheet" href="./Loogin.css">
+  <style>
+    .forgot-password-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: #666;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
 
-        .forgot-password-link:hover {
-            color: #007bff;
-            text-decoration: underline;
-        }
+    .forgot-password-link:hover {
+      color: #007bff;
+      text-decoration: underline;
+    }
 
-        .forgot-password-form {
-            display: none !important;
-        }
+    .forgot-password-form {
+      display: none !important;
+    }
 
-        .forgot-password-form.active {
-            display: block !important;
-        }
+    .forgot-password-form.active {
+      display: block !important;
+    }
 
-        .form-box.login.hidden {
-            display: none !important;
-        }
+    .form-box.login.hidden {
+      display: none !important;
+    }
 
-        .back-to-login {
-            background: none;
-            border: none;
-            color: #666;
-            text-decoration: underline;
-            cursor: pointer;
-            font-size: 14px;
-            margin-top: 15px;
-            transition: color 0.3s ease;
-        }
+    .back-to-login {
+      background: none;
+      border: none;
+      color: #666;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 15px;
+      transition: color 0.3s ease;
+    }
 
-        .back-to-login:hover {
-            color: #007bff;
-        }
+    .back-to-login:hover {
+      color: #007bff;
+    }
 
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #c3e6cb;
-            font-size: 14px;
-        }
+    .success-message {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #c3e6cb;
+      font-size: 14px;
+    }
 
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #f5c6cb;
-            font-size: 14px;
-        }
-    </style>
+    .error-message {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #f5c6cb;
+      font-size: 14px;
+    }
+
+    .question-group {
+      margin-bottom: 15px;
+    }
+
+    .question-group label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .question-group input {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 
 <body>
-    <h1 class="site-title">LawDecodes</h1>
-    <div class="wrapper">
-        <!-- Login Form -->
-        <div class="form-box login" id="loginForm">
-            <h2>Login</h2>
-            <form action="./MainHomePage.html" method="GET">
-                <div class="input-box">
-                    <input type="text" required="required" name="username" id="username">
-                    <label>Username</label>
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" required="required" name="password" id="password">
-                    <label>Password</label>
-                    <i class="fas fa-lock"></i>
-                </div>
-                <button type="submit">Login</button>
-                <div class="linkTxt">
-                    <a href="#" class="forgot-password-link" id="forgotPasswordLink">Forgot Password?</a>
-                    <p>Don't have an account? <a href="./Signup.html">Sign up</a></p>
-                </div>
-            </form>
+  <h1 class="site-title">LawDecodes</h1>
+  <div class="wrapper">
+    <!-- Login Form -->
+    <div class="form-box login" id="loginForm">
+      <h2>Login</h2>
+      <form action="./MainHomePage.html" method="GET">
+        <div class="input-box">
+          <input type="text" required="required" name="username" id="username">
+          <label>Username</label>
+          <i class="fas fa-user"></i>
         </div>
-
-        <!-- Forgot Password Form -->
-        <div class="form-box forgot-password-form" id="forgotPasswordForm">
-            <h2>Reset Password</h2>
-            <div id="messageContainer"></div>
-            <form id="forgotPasswordFormElement">
-                <div class="input-box">
-                    <input type="email" required="required" name="email" id="resetEmail">
-                    <label>Email Address</label>
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <button type="submit">Send Reset Link</button>
-                <button type="button" class="back-to-login" id="backToLogin">Back to Login</button>
-            </form>
+        <div class="input-box">
+          <input type="password" required="required" name="password" id="password">
+          <label>Password</label>
+          <i class="fas fa-lock"></i>
         </div>
-
-        <!-- Info Text -->
-        <div class="info-text login" id="infoText">
-            <h2 id="infoTitle">Welcome Back!</h2>
-            <p id="infoDescription">Please enter your credentials to access your account.</p>
+        <button type="submit">Login</button>
+        <div class="linkTxt">
+          <a href="#" class="forgot-password-link" id="forgotPasswordLink">Forgot Password?</a>
+          <p>Don't have an account? <a href="./Signup.html">Sign up</a></p>
         </div>
+      </form>
     </div>
 
-    <script>
-        // Forgot Password Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginForm = document.getElementById('loginForm');
-            const forgotPasswordForm = document.getElementById('forgotPasswordForm');
-            const forgotPasswordLink = document.getElementById('forgotPasswordLink');
-            const backToLogin = document.getElementById('backToLogin');
-            const infoTitle = document.getElementById('infoTitle');
-            const infoDescription = document.getElementById('infoDescription');
-            const forgotPasswordFormElement = document.getElementById('forgotPasswordFormElement');
-            const messageContainer = document.getElementById('messageContainer');
+    <!-- Forgot Password Form with Security Questions -->
+    <div class="form-box forgot-password-form" id="forgotPasswordForm">
+      <h2>Answer Security Questions</h2>
+      <div id="messageContainer"></div>
 
-            // Switch to forgot password form
-            forgotPasswordLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                loginForm.classList.add('hidden');
-                forgotPasswordForm.classList.add('active');
-                
-                // Update info text
-                infoTitle.textContent = 'Reset Your Password';
-                infoDescription.textContent = 'Enter your email address and we\'ll send you a link to reset your password.';
-                
-                // Clear any previous messages
-                messageContainer.innerHTML = '';
-            });
+      <form id="securityQuestionsForm">
+        <div class="questions-container">
+          <div class="question-group">
+            <label id="q1"></label>
+            <input type="text" id="a1" required>
+          </div>
+          <div class="question-group">
+            <label id="q2"></label>
+            <input type="text" id="a2" required>
+          </div>
+          <div class="question-group">
+            <label id="q3"></label>
+            <input type="text" id="a3" required>
+          </div>
+          <div class="question-group">
+            <label id="q4"></label>
+            <input type="text" id="a4" required>
+          </div>
+          <div class="question-group">
+            <label id="q5"></label>
+            <input type="text" id="a5" required>
+          </div>
+        </div>
+        <button type="submit">Verify Answers</button>
+        <button type="button" class="back-to-login" id="backToLogin">Back to Login</button>
+      </form>
 
-            // Switch back to login form
-            backToLogin.addEventListener('click', function() {
-                forgotPasswordForm.classList.remove('active');
-                loginForm.classList.remove('hidden');
-                
-                // Restore original info text
-                infoTitle.textContent = 'Welcome Back!';
-                infoDescription.textContent = 'Please enter your credentials to access your account.';
-                
-                // Clear form and messages
-                forgotPasswordFormElement.reset();
-                messageContainer.innerHTML = '';
-            });
+      <!-- Reset Password Form -->
+      <form id="resetPasswordForm" style="display:none; margin-top:20px;">
+        <h3>Set New Password</h3>
+        <div class="input-box">
+          <input type="password" id="newPassword" required>
+          <label>New Password</label>
+        </div>
+        <div class="input-box">
+          <input type="password" id="confirmNewPassword" required>
+          <label>Confirm Password</label>
+        </div>
+        <button type="submit">Reset Password</button>
+      </form>
+    </div>
 
-            // Handle forgot password form submission
-            forgotPasswordFormElement.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = document.getElementById('resetEmail').value;
-                
-                // Clear previous messages
-                messageContainer.innerHTML = '';
-                
-                // Basic email validation
-                if (!isValidEmail(email)) {
-                    showMessage('Please enter a valid email address.', 'error');
-                    return;
-                }
-                
-                // Simulate sending reset email (replace with actual API call)
-                simulatePasswordReset(email);
-            });
+    <!-- Info Text -->
+    <div class="info-text login" id="infoText">
+      <h2 id="infoTitle">Welcome Back!</h2>
+      <p id="infoDescription">Please enter your credentials to access your account.</p>
+    </div>
+  </div>
 
-            // Email validation function
-            function isValidEmail(email) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return emailRegex.test(email);
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const loginForm = document.getElementById("loginForm");
+      const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+      const forgotPasswordLink = document.getElementById("forgotPasswordLink");
+      const backToLogin = document.getElementById("backToLogin");
+      const infoTitle = document.getElementById("infoTitle");
+      const infoDescription = document.getElementById("infoDescription");
+      const messageContainer = document.getElementById("messageContainer");
+
+      const securityQuestionsForm = document.getElementById("securityQuestionsForm");
+      const resetPasswordForm = document.getElementById("resetPasswordForm");
+
+      // Load stored user from localStorage (from signup page)
+      const storedUser = JSON.parse(localStorage.getItem("userData"));
+
+      // Show security questions
+      if (storedUser && storedUser.securityQuestions) {
+        for (let i = 1; i <= 5; i++) {
+          document.getElementById(`q${i}`).textContent =
+            storedUser.securityQuestions[`q${i}`].question;
+        }
+      }
+
+      // Switch to forgot password form
+      forgotPasswordLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        loginForm.classList.add("hidden");
+        forgotPasswordForm.classList.add("active");
+        infoTitle.textContent = "Reset Your Password";
+        infoDescription.textContent = "Answer the security questions to reset your password.";
+        messageContainer.innerHTML = "";
+      });
+
+      // Back to login
+      backToLogin.addEventListener("click", function () {
+        forgotPasswordForm.classList.remove("active");
+        loginForm.classList.remove("hidden");
+        resetPasswordForm.style.display = "none";
+        securityQuestionsForm.style.display = "block";
+        infoTitle.textContent = "Welcome Back!";
+        infoDescription.textContent = "Please enter your credentials to access your account.";
+        messageContainer.innerHTML = "";
+      });
+
+      // Verify answers
+      securityQuestionsForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        let allCorrect = true;
+        for (let i = 1; i <= 5; i++) {
+          const userAnswer = document.getElementById(`a${i}`).value.trim().toLowerCase();
+          const correctAnswer = storedUser.securityQuestions[`q${i}`].answer;
+          if (userAnswer !== correctAnswer) {
+            allCorrect = false;
+            break;
+          }
+        }
+
+        if (allCorrect) {
+          showMessage("Answers verified ✅ Please reset your password.", "success");
+          securityQuestionsForm.style.display = "none";
+          resetPasswordForm.style.display = "block";
+        } else {
+          showMessage("One or more answers are incorrect. Try again.", "error");
+        }
+      });
+
+      // Reset password
+      resetPasswordForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const newPassword = document.getElementById("newPassword").value;
+        const confirmNewPassword = document.getElementById("confirmNewPassword").value;
+
+        if (newPassword !== confirmNewPassword) {
+          showMessage("Passwords do not match!", "error");
+          return;
+        }
+
+        storedUser.password = newPassword;
+        localStorage.setItem("userData", JSON.stringify(storedUser));
+
+        showMessage("Password reset successful! Redirecting to login...", "success");
+        setTimeout(() => {
+          window.location.href = "./Loginpage.html";
+        }, 3000);
+      });
+
+      function showMessage(message, type) {
+        const messageDiv = document.createElement("div");
+        messageDiv.className = type === "success" ? "success-message" : "error-message";
+        messageDiv.textContent = message;
+        messageContainer.innerHTML = "";
+        messageContainer.appendChild(messageDiv);
+
+        if (type === "success") {
+          setTimeout(() => {
+            if (messageDiv.parentNode) {
+              messageDiv.remove();
             }
-
-            // Simulate password reset (replace with actual implementation)
-            function simulatePasswordReset(email) {
-                // Show loading state
-                const submitButton = forgotPasswordFormElement.querySelector('button[type="submit"]');
-                const originalText = submitButton.textContent;
-                submitButton.textContent = 'Sending...';
-                submitButton.disabled = true;
-
-                // Simulate API call delay
-                setTimeout(() => {
-                    // Reset button state
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                    
-                    // Show success message
-                    showMessage(`Password reset link has been sent to ${email}. Please check your inbox and follow the instructions to reset your password.`, 'success');
-                    
-                    // Clear the form
-                    forgotPasswordFormElement.reset();
-                }, 2000);
-            }
-
-            // Show message function
-            function showMessage(message, type) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = type === 'success' ? 'success-message' : 'error-message';
-                messageDiv.textContent = message;
-                messageContainer.appendChild(messageDiv);
-                
-                // Auto-hide success messages after 5 seconds
-                if (type === 'success') {
-                    setTimeout(() => {
-                        if (messageDiv.parentNode) {
-                            messageDiv.remove();
-                        }
-                    }, 5000);
-                }
-            }
-        });
-
-        // If you have existing Login.js functionality, make sure to integrate it here
-        // or load it after this script
-    </script>
-    
-    <!-- Load your existing Login.js if it has other functionality -->
-    <script src="./Login.js"></script>
+          }, 5000);
+        }
+      }
+    });
+  </script>
 </body>
-
 </html>
