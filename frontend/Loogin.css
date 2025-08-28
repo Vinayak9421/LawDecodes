@@ -28,7 +28,7 @@ body {
 .wrapper {
     display: flex;
     width: 750px;
-    height: 450px;
+    height: 550px;
     background: var(--white);
     border: 2px solid var(--black);
     border-radius: 10px;
