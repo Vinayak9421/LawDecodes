@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- coding by @_.codedevotee -->
 
 <head>
     <meta charset="UTF-8">
@@ -15,44 +14,358 @@
 </head>
 
 <body>
-    <h1 class="site-title">DoctorDoc</h1>
-    <div class="wrapper">
+    <h1 class="site-title">LawDecodes</h1>
+    <div class="wrapper" id="signupWrapper">
         <div class="form-box register">
             <h2 class="title">Sign Up</h2>
+            
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
+            <!-- Step Indicator -->
+            <div class="step-indicator">
+                <span class="step active" id="step1">1</span>
+                <span class="step" id="step2">2</span>
+            </div>
 
-            <form action="./MainHomePage.html" method="GET">
+            <form id="signupForm">
+                <!-- Basic Information Section -->
+                <div class="basic-info-section" id="basicInfoSection">
+                    <div class="input-box">
+                        <input type="text" required name="username" id="username">
+                        <label for="">Username</label>
+                        <i class='bx bxs-user'></i>
+                    </div>
 
-                <div class="input-box">
-                    <input type="text" required>
-                    <label for="">Username</label>
-                    <i class='bx bxs-user'></i>
+                    <div class="input-box">
+                        <input type="email" required name="email" id="email">
+                        <label for="">Email</label>
+                        <i class='bx bxs-envelope'></i>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="password" required name="password" id="password">
+                        <label for="">Password</label>
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="password" required name="confirmPassword" id="confirmPassword">
+                        <label for="">Confirm Password</label>
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+
+                    <button type="button" class="btn" id="nextBtn">Next: Security Questions</button>
                 </div>
 
-                <div class="input-box">
-                    <input type="email" required>
-                    <label for="">Email</label>
-                    <i class='bx bxs-envelope'></i>
+                <!-- Security Questions Section -->
+                <div class="security-questions-section" id="securityQuestionsSection">
+                    <h3>Security Questions</h3>
+                    <p>Please answer these 5 questions for account recovery</p>
+
+                    <div class="questions-container">
+                        <!-- Question 1 -->
+                        <div class="question-group">
+                            <label>Question 1:</label>
+                            <select id="question1" required>
+                                <option value="">Select a question...</option>
+                                <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                                <option value="What was the name of your first school?">What was the name of your first school?</option>
+                                <option value="What is your father's middle name?">What is your father's middle name?</option>
+                            </select>
+                            <input type="text" placeholder="Your answer..." id="answer1" required>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="question-group">
+                            <label>Question 2:</label>
+                            <select id="question2" required>
+                                <option value="">Select a question...</option>
+                                <option value="What was the name of your first pet?">What was the name of your first pet?</option>
+                                <option value="In which city were you born?">In which city were you born?</option>
+                                <option value="What is your favorite book?">What is your favorite book?</option>
+                            </select>
+                            <input type="text" placeholder="Your answer..." id="answer2" required>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div class="question-group">
+                            <label>Question 3:</label>
+                            <select id="question3" required>
+                                <option value="">Select a question...</option>
+                                <option value="What was your childhood nickname?">What was your childhood nickname?</option>
+                                <option value="What is the name of your best friend?">What is the name of your best friend?</option>
+                                <option value="What was your first car model?">What was your first car model?</option>
+                            </select>
+                            <input type="text" placeholder="Your answer..." id="answer3" required>
+                        </div>
+
+                        <!-- Question 4 -->
+                        <div class="question-group">
+                            <label>Question 4:</label>
+                            <select id="question4" required>
+                                <option value="">Select a question...</option>
+                                <option value="What is your favorite movie?">What is your favorite movie?</option>
+                                <option value="What street did you grow up on?">What street did you grow up on?</option>
+                                <option value="What was your first job?">What was your first job?</option>
+                            </select>
+                            <input type="text" placeholder="Your answer..." id="answer4" required>
+                        </div>
+
+                        <!-- Question 5 -->
+                        <div class="question-group">
+                            <label>Question 5:</label>
+                            <select id="question5" required>
+                                <option value="">Select a question...</option>
+                                <option value="What is your favorite food?">What is your favorite food?</option>
+                                <option value="What was the model of your first phone?">What was the model of your first phone?</option>
+                                <option value="What is your dream destination?">What is your dream destination?</option>
+                            </select>
+                            <input type="text" placeholder="Your answer..." id="answer5" required>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button type="button" class="nav-btn" id="backBtn">Back</button>
+                        <button type="submit" class="nav-btn" id="submitBtn">Complete Registration</button>
+                    </div>
                 </div>
 
-                <div class="input-box">
-                    <input type="password" required>
-                    <label for="">Password</label>
-                    <i class='bx bxs-lock-alt'></i>
+                <!-- Loading Section -->
+                <div class="loading-spinner" id="loadingSection">
+                    <div class="spinner"></div>
+                    <p>Creating your account...</p>
                 </div>
 
-                <button type="submit" class="btn">Sign Up</button>
-
-                <div class="linkTxt">
-                    <p>Already have an account? <a href="./Loginpage.html" class="login-link">Login</a></p>
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <h3>Registration Successful! 🎉</h3>
+                    <p>Your account has been created successfully. You will be redirected to the login page.</p>
                 </div>
             </form>
+
+            <div class="linkTxt">
+                <p>Already have an Account?<br><a href="./Loginpage.html" class="login-link">Click here to Login</a></p>
+            </div>
         </div>
 
         <div class="info-text register">
-            <h2>Welcome Back!</h2>
-            <p>Sign up quickly to get summary of your documents!!!</p>
+            <h2 id="infoTitle">Join Us Today!</h2>
+            <p id="infoDescription">Sign up quickly to get summary of your documents! Complete the security verification to protect your account.</p>
         </div>
     </div>
+
+    <script>
+        class SignupManager {
+            constructor() {
+                this.currentStep = 1;
+                this.totalSteps = 2;
+                this.init();
+            }
+
+            init() {
+                this.attachEventListeners();
+                this.updateProgress();
+            }
+
+            attachEventListeners() {
+                // Next button to go to security questions
+                document.getElementById('nextBtn').addEventListener('click', () => {
+                    if (this.validateBasicInfo()) {
+                        this.goToStep(2);
+                    }
+                });
+
+                // Back button to return to basic info
+                document.getElementById('backBtn').addEventListener('click', () => {
+                    this.goToStep(1);
+                });
+
+                // Form submission
+                document.getElementById('signupForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (this.validateSecurityQuestions()) {
+                        this.submitForm();
+                    }
+                });
+
+                // Prevent duplicate question selection
+                this.setupQuestionValidation();
+            }
+
+            validateBasicInfo() {
+                const username = document.getElementById('username').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+
+                if (!username || !email || !password || !confirmPassword) {
+                    alert('Please fill in all fields.');
+                    return false;
+                }
+
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match.');
+                    return false;
+                }
+
+                if (password.length < 6) {
+                    alert('Password must be at least 6 characters long.');
+                    return false;
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return false;
+                }
+
+                return true;
+            }
+
+            validateSecurityQuestions() {
+                const questions = [];
+                const answers = [];
+
+                for (let i = 1; i <= 5; i++) {
+                    const question = document.getElementById(`question${i}`).value;
+                    const answer = document.getElementById(`answer${i}`).value.trim();
+
+                    if (!question || !answer) {
+                        alert(`Please complete Question ${i}.`);
+                        return false;
+                    }
+
+                    if (questions.includes(question)) {
+                        alert('Please select different questions for each security question.');
+                        return false;
+                    }
+
+                    questions.push(question);
+                    answers.push(answer);
+                }
+
+                return true;
+            }
+
+            setupQuestionValidation() {
+                for (let i = 1; i <= 5; i++) {
+                    document.getElementById(`question${i}`).addEventListener('change', () => {
+                        this.checkDuplicateQuestions();
+                    });
+                }
+            }
+
+            checkDuplicateQuestions() {
+                const selectedQuestions = [];
+                const selects = document.querySelectorAll('select[id^="question"]');
+                
+                selects.forEach(select => {
+                    if (select.value && selectedQuestions.includes(select.value)) {
+                        select.style.borderColor = '#ff6b6b';
+                    } else {
+                        select.style.borderColor = 'rgba(0, 0, 0, 0.2)';
+                        if (select.value) {
+                            selectedQuestions.push(select.value);
+                        }
+                    }
+                });
+            }
+
+            goToStep(step) {
+                if (step === 1) {
+                    document.getElementById('basicInfoSection').classList.remove('hidden');
+                    document.getElementById('securityQuestionsSection').classList.remove('active');
+                    // Update info text
+                    document.getElementById('infoTitle').textContent = 'Join Us Today!';
+                    document.getElementById('infoDescription').textContent = 'Sign up quickly to get summary of your documents! Complete the security verification to protect your account.';
+                    this.currentStep = 1;
+                } else if (step === 2) {
+                    document.getElementById('basicInfoSection').classList.add('hidden');
+                    document.getElementById('securityQuestionsSection').classList.add('active');
+                    // Update info text
+                    document.getElementById('infoTitle').textContent = 'Security Questions';
+                    document.getElementById('infoDescription').textContent = 'Set up security questions to help protect and recover your account.';
+                    this.currentStep = 2;
+                }
+
+                this.updateStepIndicator();
+                this.updateProgress();
+            }
+
+            updateStepIndicator() {
+                for (let i = 1; i <= this.totalSteps; i++) {
+                    const step = document.getElementById(`step${i}`);
+                    if (i < this.currentStep) {
+                        step.className = 'step completed';
+                    } else if (i === this.currentStep) {
+                        step.className = 'step active';
+                    } else {
+                        step.className = 'step';
+                    }
+                }
+            }
+
+            updateProgress() {
+                const progress = (this.currentStep / this.totalSteps) * 100;
+                document.getElementById('progressFill').style.width = `${progress}%`;
+            }
+
+            async submitForm() {
+                // Show loading
+                document.getElementById('securityQuestionsSection').style.display = 'none';
+                document.getElementById('loadingSection').style.display = 'block';
+
+                // Collect all form data
+                const formData = {
+                    username: document.getElementById('username').value,
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value,
+                    securityQuestions: {}
+                };
+
+                // Collect security questions and answers
+                for (let i = 1; i <= 5; i++) {
+                    const question = document.getElementById(`question${i}`).value;
+                    const answer = document.getElementById(`answer${i}`).value;
+                    formData.securityQuestions[`q${i}`] = {
+                        question: question,
+                        answer: answer.toLowerCase() // Store answers in lowercase for easier comparison
+                    };
+                }
+
+                // Simulate API call
+                try {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    
+                    // Store user data (in real app, send to server)
+                    console.log('User data:', formData);
+                    
+                    // Show success message
+                    document.getElementById('loadingSection').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // Redirect to login page after 3 seconds
+                    setTimeout(() => {
+                        // In real app: window.location.href = './Loginpage.html';
+                        alert('Would redirect to login page');
+                    }, 3000);
+                    
+                } catch (error) {
+                    document.getElementById('loadingSection').style.display = 'none';
+                    document.getElementById('securityQuestionsSection').style.display = 'block';
+                    alert('Registration failed. Please try again.');
+                }
+            }
+        }
+
+        // Initialize signup manager when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new SignupManager();
+        });
+    </script>
 </body>
 
 </html>
