@@ -1,0 +1,29 @@
+================================================================================
+COMPREHENSIVE LEGAL DOCUMENT ANALYSIS REPORT
+================================================================================
+
+📄 Document: extracted_docx.txt
+📊 Total Sections: 2
+📈 Average Confidence: 0.95
+📉 Average Compression: 0.38
+
+🎯 EXECUTIVE SUMMARY
+--------------------------------------------------
+Introduction: - MUTUAL NON-DISCLOSURE AGREEMENT Parties and Purpose This Mutual Non-Disclosure Agreement ("Agreement") is entered into between InnovaCore Dynamics ("Party A") and Quantum Leap Ventures ("party B"), collectively referred to as the "Parties." This Agreement is intended to protect such information from unauthorized disclosure or other information. | 2. Definition of Confidential Information: the Disclosing Party. (d) Limit the dissemination of Confidential Information to its employees, agents, or contractors ("Representatives") on a "need-to-know" basis for the Permitted Purpose. Section: 2. Exclusions The obligations under this Agreement shall not apply to information that the Receiving party can demonstrate: (a) was publicly known or made generally available prior to the time of disclosure by the Receiving Party; (b) did not disclose any confidential information to
+
+📋 SECTION-BY-SECTION ANALYSIS
+--------------------------------------------------
+
+1. INTRODUCTION
+   Type: introduction
+   Confidence: 0.95
+   Compression: 77 → 46 words
+   Key Entities: ORG: Quantum Leap Ventures, InnovaCore Dynamics, INNOVACORE DYNAMICS & QUANTUM, Confidential Information | CONTRACT_PARTY: "Agreement", "Parties.", "Party B", "Party A", "Permitted Purpose"
+   Summary: - MUTUAL NON-DISCLOSURE AGREEMENT Parties and Purpose This Mutual Non-Disclosure Agreement ("Agreement") is entered into between InnovaCore Dynamics ("Party A") and Quantum Leap Ventures ("party B"), collectively referred to as the "Parties." This Agreement is intended to protect such information from unauthorized disclosure or other information.
+
+2. 2. DEFINITION OF CONFIDENTIAL INFORMATION
+   Type: confidentiality
+   Confidence: 0.95
+   Compression: 448 → 70 words
+   Key Entities: PERSON: Breach | ORG: Receiving Party, the Disclosing Party's, the "Receiving Party, the Receiving Party, the "Disclosing Party, Agreement, The Receiving Party, Confidential Information, the Confidential Information, Disclosing Party, the Disclosing Party | DATE: 2) years | CONTRACT_PARTY: "Receiving Party", "need-to-know", "Confidential Information", "Representatives", "Disclosing Party", "Confidential."
+   Summary: the Disclosing Party. (d) Limit the dissemination of Confidential Information to its employees, agents, or contractors ("Representatives") on a "need-to-know" basis for the Permitted Purpose. Section: 2. Exclusions The obligations under this Agreement shall not apply to information that the Receiving party can demonstrate: (a) was publicly known or made generally available prior to the time of disclosure by the Receiving Party; (b) did not disclose any confidential information to

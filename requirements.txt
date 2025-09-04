@@ -1,0 +1,17 @@
+PyMuPDF>=1.24.4
+Pillow>=10.0.0
+easyocr>=1.7.1
+fitz
+python-docx
+pymongo
+python-dotenv
+fastapi
+uvicorn
+passlib[bcrypt]
+transformers>=4.44.2
+datasets>=2.21.0
+torch>=2.0.0
+sentencepiece   # needed for BART/PEGASUS tokenizers
+accelerate      # helps with training speed
+scikit-learn
+evaluate

@@ -1,0 +1,86 @@
+================================================================================
+COMPREHENSIVE LEGAL DOCUMENT ANALYSIS REPORT
+================================================================================
+
+📄 Document: extracted_text.txt
+📊 Total Sections: 10
+📈 Average Confidence: 0.95
+📉 Average Compression: 2.03
+
+🎯 EXECUTIVE SUMMARY
+--------------------------------------------------
+: orG: Acme Corporation | CONTRACT_PARTY: Company Content: behavior expected from all employees of Acmes Corporation ("the Compagnie") This policy is intended to provide guidance and ensure that our work is conducted in an ethical and legal manner. | Employees must avoid any situation in which their personal: containing all key legal information: Section: 3. Confidential and Proprietary Information Type: confidentiality Key Entities: ORG – ACME CORPORATION - EMPLOY
+
+📋 SECTION-BY-SECTION ANALYSIS
+--------------------------------------------------
+
+1. INTRODUCTION
+   Type: introduction
+   Confidence: 0.95
+   Compression: 11 → 21 words
+   Key Entities: No key entities identified
+   Summary: Introduction Type: introduction Key Entities: No key entities identified Content: --- Page 1 - ACME CORPORATION – EMPLOYEE CODE OF CONDUCT
+
+2. THIS EMPLOYEE CODE OF CONDUCT OUTLINES THE STANDARDS AND ETHICAL
+   Type: conduct
+   Confidence: 0.95
+   Compression: 39 → 67 words
+   Key Entities: ORG: Acme Corporation | CONTRACT_PARTY: Company, "the
+Company"
+   Summary: provides a comprehensive summary of this conduct section preserving all key legal information: Section: This Employee Code of Conduct outlines the standards and ethical Type: conduct Key Entities: ORG: Acme Corporation | CONTRACT_PARTY: Company, "the Company" Content: behavior expected from all employees of Acmes Corporation ("the Compagnie"). This policy is intended to provide guidance and ensure that our work is conducted in an ethical and legal manner.
+
+3. EMPLOYEES MUST AVOID ANY SITUATION IN WHICH THEIR PERSONAL
+   Type: general
+   Confidence: 0.95
+   Compression: 21 → 35 words
+   Key Entities: CONTRACT_PARTY: Company
+   Summary: containing all key legal information: Section: Employees must avoid any situation in which their personal Type: general Key Entities: CONTRACT_PARTY: Company Content: interests could conflict, or appear to conflict with the interests of the Company.
+
+4. PRIVATE INTEREST INTERFERES IN ANY WAY WITH THE INTERESTS OF THE
+   Type: general
+   Confidence: 0.95
+   Compression: 15 → 39 words
+   Key Entities: CONTRACT_PARTY: Company
+   Summary: preserving all key legal information: Section: private interest interferes in any way with the interests of the Type: general Key Entities: CONTRACT_PARTY: company Content: Company. Employees must not use their position or Company property or information for personal gain.
+
+5. 3. CONFIDENTIAL AND PROPRIETARY INFORMATION
+   Type: confidentiality
+   Confidence: 0.95
+   Compression: 24 → 41 words
+   Key Entities: ORG: Company | CONTRACT_PARTY: Company
+   Summary: Section preserving all key legal information: Section: 3. Confidential and Proprietary Information Type: confidentiality Key Entities: ORG: Company | CONTRACT_PARTY: Companies Content: During their employment, employees may have access to confidential information regarding the Company, its customers, suppliers, and other employees.
+
+6. DISCLOSED TO ANY THIRD PARTY WITHOUT PRIOR WRITTEN CONSENT FROM THE
+   Type: general
+   Confidence: 0.95
+   Compression: 30 → 27 words
+   Key Entities: ORG: Company | CONTRACT_PARTY: Company
+   Summary: , including, but is not limited to, financial data, business strategies, and customer lists. This obligation continues indefinitely, even after employment with the Company has been terminated.
+
+7. 4. USE OF COMPANY ASSETS
+   Type: general
+   Confidence: 0.95
+   Compression: 27 → 61 words
+   Key Entities: CONTRACT_PARTY: Company
+   Summary: , including but not limited to equipment, supplies, computer systems, software, and information, are to be used for legitimate business purposes only. Incidental personal use: Section: 4. Use of Company Assets Type: general Key Entities: CONTRACT_PARTY: Company Content: All Company assets, such as but without limitation to Equipment, Supplies, Computer Systems, Software and Information, must be utilised only for legal purposes.
+
+8. IS PERMISSIBLE PROVIDED IT DOES NOT INTERFERE WITH WORK PERFORMANCE
+   Type: general
+   Confidence: 0.95
+   Compression: 25 → 44 words
+   Key Entities: CONTRACT_PARTY: Company
+   Summary: preserving all key legal information: Section: is permissible provided it does not interfere with work performance Type: general Key Entities: CONTRACT_PARTY: Company Content: and does no violate any other Company policy. Employees are expected to protect Company assets from loss, damage, misuse, and theft.
+
+9. ANY VIOLATION OF THIS CODE OF CONDUCT MAY RESULT IN DISCIPLINARY
+   Type: conduct
+   Confidence: 0.95
+   Compression: 10 → 30 words
+   Key Entities: No key entities identified
+   Summary: this conduct section preserving all key legal information: Section: Any violation of this Code of Conduct may result in disciplinary Type: conduct Key Entities: No key entities identified Content: action.
+
+10. MAY RANGE FROM A VERBAL WARNING TO IMMEDIATE TERMINATION OF
+   Type: termination
+   Confidence: 0.95
+   Compression: 10 → 28 words
+   Key Entities: ORG: Company | CONTRACT_PARTY: Company
+   Summary: Section: may range from a verbal warning to immediate termination of Type: termination Key Entities: ORG: Company | CONTRACT_PARTY: Component Content: employment and the pursuit of legal action.
