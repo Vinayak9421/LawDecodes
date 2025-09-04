@@ -1,3 +1,4 @@
 env/
-summary/outputs/
-*.safetensors
+summary/outputs/models/
+
+# Run the command to train and load the model(from root directory)- python -m summary.train
