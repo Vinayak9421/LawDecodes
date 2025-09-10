@@ -51,4 +51,6 @@ def main():
     print(f"Model saved to: {config.output_dir}")
 
 if __name__ == "__main__":
+
+    os.environ["WANDB_DISABLED"] = "true"
     main()
