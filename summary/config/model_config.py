@@ -48,3 +48,18 @@ class ModelConfig:
 
 # Global config instance
 config = ModelConfig()
+
+
+# Add these lines to model_config.py
+ADVANCED_TRAINING_DATA_PATH = "data/advanced_training_data_final_adi.json"
+ORIGINAL_TRAINING_DATA_PATH = "data/enhanced_training_data.json"  # Keep as backup
+
+# Training configuration
+TRAINING_CONFIG = {
+    "data_file": ADVANCED_TRAINING_DATA_PATH,
+    "model_name": "t5-small",
+    "max_epochs": 15,
+    "batch_size": 4,
+    "learning_rate": 3e-4,
+    "output_dir": "models/fine_tuned_legal_t5"
+}
