@@ -18,8 +18,7 @@ class LegalDatasetBuilder:
                 batch['input_text'],
                 max_length=self.max_input_length,
                 truncation=True,
-                padding=True,
-                return_tensors='pt'
+                padding='max_length'  # pad to max_length
             )
             
             # Tokenize targets
@@ -27,30 +26,30 @@ class LegalDatasetBuilder:
                 batch['target_text'],
                 max_length=self.max_target_length,
                 truncation=True,
-                padding=True,
-                return_tensors='pt'
+                padding='max_length'
             )
             
             # Set labels for loss calculation
             model_inputs['labels'] = labels['input_ids']
             
             return model_inputs
-        
+    
         # Create dataset from examples
         dataset_dict = {
             'input_text': [ex['input_text'] for ex in examples],
             'target_text': [ex['target_text'] for ex in examples],
             'section_type': [ex['section_type'] for ex in examples]
         }
-        
+    
         dataset = Dataset.from_dict(dataset_dict)
         tokenized_dataset = dataset.map(
             tokenize_function,
             batched=True,
             remove_columns=['input_text', 'target_text', 'section_type']
         )
-        
+    
         return tokenized_dataset
+
     
     def create_train_eval_split(self, dataset: Dataset, eval_ratio: float = 0.2):
         """Split dataset into train and eval"""
