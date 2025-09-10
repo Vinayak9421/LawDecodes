@@ -29,7 +29,7 @@ def main():
     # Step 3: Load and preprocess data
     print("\nLoading training data...")
     preprocessor = LegalTextPreprocessor()
-    training_data_path = os.path.join(config.data_dir, "sample_training_data.json")
+    training_data_path = os.path.join(config.data_dir, "advanced_training_data_final_adi.json")
     
     examples = preprocessor.load_training_data(training_data_path)
     print(f"Loaded {len(examples)} training examples")
