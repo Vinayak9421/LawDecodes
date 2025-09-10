@@ -102,22 +102,30 @@ class LegalTextPreprocessor:
         """Load and preprocess training data from JSON"""
         with open(json_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        
+    
+        # Determine if JSON is a dict or list
+        if isinstance(data, dict) and 'training_examples' in data:
+            examples_list = data['training_examples']
+        elif isinstance(data, list):
+            examples_list = data
+        else:
+            raise ValueError("Unexpected JSON format: must be a list or a dict with 'training_examples' key")
+    
         processed_examples = []
-        for example in data['training_examples']:
+        for example in examples_list:
             formatted_input = self.format_training_input(
                 example['legal_text'], 
-                example['section_type']
+                example.get('section_type')
             )
-            
+    
             processed_examples.append({
                 'input_text': formatted_input,
                 'target_text': example['summary'],
-                'section_type': example['section_type'],
+                'section_type': example.get('section_type', 'general'),
                 'original_text': example['legal_text'],
                 'key_elements': example.get('key_elements', {})
             })
-        
+    
         return processed_examples
 
 # Usage example
